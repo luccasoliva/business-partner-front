@@ -42,13 +42,16 @@ export class CardService {
   public createCard(newCard: newCard, avatar: File) {
     this.uploadAvatar(avatar).then((url) => {
       newCard.avatar = url;
-      window.location.reload();
+
       this.http.post<newCard>(`${this.url}`, newCard).subscribe(
         (newCard) => {
+
           this.snackbar.open('Card created successfully!', 'OK', {
             duration: 2000,
             verticalPosition: 'top',
             panelClass: ['success-snackbar'],
+          }).afterDismissed().subscribe(() => {
+            window.location.reload();
           });
         },
         (err) => {
@@ -60,7 +63,9 @@ export class CardService {
               verticalPosition: 'top',
               panelClass: ['error-snackbar'],
             }
-          );
+          ).afterDismissed().subscribe(() => {
+            window.location.reload();
+          });
         }
       );
     });
