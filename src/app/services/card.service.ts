@@ -32,21 +32,12 @@ export class CardService {
   }
 
   public deleteCard(card: card): Observable<void> {
-    if (card.avatar) {
-      return this.storage
-        .refFromURL(card.avatar)
-        .delete()
-        .pipe(
-          mergeMap(() => {
-            /**
-             * mergeMap tem a função de pegar dois ou mais observables e transformar todos
-             * em um só
-             */
-            return this.http.delete<any>(`${this.url}/${card.CardCode}`);
-          })
-        );
-    } else {
-      return this.http.delete<any>(`${this.url}/${card.CardCode}`);
+    if (card.avatar.includes('firebasestorage')) {
+      const ref = this.storage.refFromURL(card.avatar);
+      ref.delete();
+      return this.http.delete<void>(`${this.url}/${card.CardCode}`);
+    }else{
+      return this.http.delete<void>(`${this.url}/${card.CardCode}`);
     }
   }
 
@@ -54,18 +45,14 @@ export class CardService {
     //upload avatar in uploadImagem and wait for the url then save the card
     this.uploadImagem(avatar).then((url) => {
       newCard.avatar = url;
-
+      window.location.reload();
       this.http.post<newCard>(`${this.url}`, newCard).subscribe(
-
         (newCard) => {
-
           this.snackbar.open('Card created successfully!', 'OK', {
             duration: 2000,
             verticalPosition: 'top',
             panelClass: ['success-snackbar'],
-          }).afterDismissed().subscribe(() => {
-            window.location.reload();
-            });
+          });
         },
         (err) => {
           this.snackbar.open(
