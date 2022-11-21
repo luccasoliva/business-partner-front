@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
   allCards?: Observable<card[]>;
   selectedTrace!: card;
   gridColumns = 3;
-  fotoPreview: string = '';
+  avatarPreview: string = '';
   foto!: File;
 
   newCardForm: FormGroup = this.fb.group({
@@ -115,28 +115,27 @@ export class CardComponent implements OnInit {
     );
   }
 
-  public recuperarFoto(event: any): void {
+  public getAvatar(event: any): void {
     this.foto = event.target.files[0];
-    this.carregarPreview();
+    this.loadPreview();
   }
 
-  public carregarPreview(): void {
+  public loadPreview(): void {
     const reader = new FileReader();
 
     reader.readAsDataURL(this.foto);
 
     reader.onload = () => {
-      this.fotoPreview = reader.result as string;
+      this.avatarPreview = reader.result as string;
     };
   }
 
   public selectCard(card: card): void {
     this.selectedTrace = card;
-    console.log(this.selectedTrace);
   }
 
   public OpenNewCardDialog(): void {
-    this.fotoPreview = '';
+    this.avatarPreview = '';
     this.dialog.open(this.newCardDialog);
   }
   public openDeleteCargoDialog(card: card): void {
@@ -152,7 +151,7 @@ export class CardComponent implements OnInit {
     });
 
     this.selectCard(card);
-    this.fotoPreview = card.avatar;
+    this.avatarPreview = card.avatar;
     this.dialog.open(this.editCardDialog);
   }
 

@@ -46,7 +46,7 @@
 <!--new dialog --><ng-template #newCardDialog class="dialog-itens">
   <section mat-dialog-content>
     <form [formGroup]="newCardForm" (ngSubmit)="saveNewCard()">
-      <img [src]="fotoPreview || '/assets/no-profile.png'" id="image-preview" />
+      <img [src]="avatarPreview || '/assets/no-profile.png'" id="image-preview" />
       <mat-form-field appearance="fill">
         <mat-label>Card Name</mat-label>
         <input
@@ -82,7 +82,7 @@
         accept="image/*"
         id="file-input"
         #fileInput
-        (change)="recuperarFoto($event)"
+        (change)="getAvatar($event)"
         formControlName="avatar"
       />
       <button
@@ -132,7 +132,7 @@
     <section mat-dialog-content>
       <form [formGroup]="cardForm" (ngSubmit)="updateCard()">
         <img
-        [src]="fotoPreview || '/assets/no-profile.png'" id="image-preview"
+        [src]="avatarPreview || '/assets/no-profile.png'" id="image-preview"
         />
         <mat-form-field appearance="fill">
           <mat-label>Card Name</mat-label>

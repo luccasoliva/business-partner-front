@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { card } from '../interfaces/card';
 import { newCard } from '../interfaces/newCard';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +15,6 @@ export class CardService {
     private http: HttpClient,
     private storage: AngularFireStorage,
     private snackbar: MatSnackBar,
-    private dialog: MatDialog
   ) {}
 
   public getAllCards(): Observable<card[]> {
@@ -42,8 +40,7 @@ export class CardService {
   }
 
   public createCard(newCard: newCard, avatar: File) {
-    //upload avatar in uploadImagem and wait for the url then save the card
-    this.uploadImagem(avatar).then((url) => {
+    this.uploadAvatar(avatar).then((url) => {
       newCard.avatar = url;
       window.location.reload();
       this.http.post<newCard>(`${this.url}`, newCard).subscribe(
@@ -69,7 +66,7 @@ export class CardService {
     });
   }
 
-  private async uploadImagem(foto: File): Promise<string> {
+  private async uploadAvatar(foto: File): Promise<string> {
     const nomeDoArquivo = Date.now();
     const dados = await this.storage.upload(`${nomeDoArquivo}`, foto);
     const downloadURL = await dados.ref.getDownloadURL();
