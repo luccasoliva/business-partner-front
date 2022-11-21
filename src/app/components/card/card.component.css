@@ -8,12 +8,14 @@
 }
 
 .rounded-circle{
-  margin: auto;
-  height: 25%;
-  width: 55%;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   margin: auto;
+  align-self: center;
+  box-shadow: 0px 5px 5px -3px rgb(253, 253, 253),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12);
  }
+
  .button-add{
   background-color: #166619;
   font-size: 16px;

@@ -54,14 +54,18 @@ export class CardService {
     //upload avatar in uploadImagem and wait for the url then save the card
     this.uploadImagem(avatar).then((url) => {
       newCard.avatar = url;
-      window.location.reload();
+
       this.http.post<newCard>(`${this.url}`, newCard).subscribe(
+
         (newCard) => {
+
           this.snackbar.open('Card created successfully!', 'OK', {
             duration: 2000,
             verticalPosition: 'top',
             panelClass: ['success-snackbar'],
-          });
+          }).afterDismissed().subscribe(() => {
+            window.location.reload();
+            });
         },
         (err) => {
           this.snackbar.open(

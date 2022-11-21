@@ -55,6 +55,7 @@ export class CardComponent implements OnInit {
   }
 
   public saveNewCard(): void {
+    this.dialog.closeAll();
     const newCard: newCard = {
 
       CardName: this.newCardForm.value.CardName,
@@ -63,12 +64,13 @@ export class CardComponent implements OnInit {
       ZipCode: this.newCardForm.value.ZipCode,
     };
       this.cardService.createCard(newCard, this.foto);
+
   }
 
 
   public deleteCard(selectedTrace: card): void {
 
-
+    this.dialog.closeAll();
     this.cardService.deleteCard(selectedTrace).subscribe(
       (data) => {
         this.closeDialog();
@@ -92,10 +94,10 @@ export class CardComponent implements OnInit {
     );
   }
   public updateCard(): void {
+    this.dialog.closeAll();
     this.selectedTrace.CardName = this.cardForm.value.CardName;
     this.cardService.updateCard(this.selectedTrace).subscribe(
       (data) => {
-        this.closeDialog();
         this.allCards = this.cardService.getAllCards();
         this.snackBar.open('The Card was successfully updated', 'OK', {
           duration: 3000,
@@ -103,7 +105,6 @@ export class CardComponent implements OnInit {
           panelClass: ['success-snackbar'],
         });
       }, (err) => {
-        this.closeDialog();
         this.allCards = this.cardService.getAllCards();
         this.snackBar.open('An error occurred. Please try again later.', 'OK', {
           duration: 4000,
