@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -29,7 +28,6 @@ import { AngularFireModule } from '@angular/fire/compat/'
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    FlexLayoutModule,
     ReactiveFormsModule,
     MatDialogModule,
     AngularFireStorageModule,
