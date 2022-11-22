@@ -3,15 +3,9 @@
     Add Card
   </button>
 
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div
-      fxFlex="25%"
-      fxFlex.md="33%"
-      fxFlex.sm="50%"
-      fxFlex.xs="100%"
-      *ngFor="let card of cards"
-    >
-      <mat-card class="mat-elevation-z4 rounded">
+    <div  class="l-card">
+      <div *ngFor="let card of cards" >
+      <mat-card class="mat-elevation-z4 rounded c-card">
         <mat-card-header class="title_center">
           <mat-card-title>{{ card.CardName }}</mat-card-title>
         </mat-card-header>
@@ -42,7 +36,6 @@
     </div>
   </div>
 </div>
-
 <!--new dialog --><ng-template #newCardDialog class="dialog-itens">
   <section mat-dialog-content>
     <form [formGroup]="newCardForm" (ngSubmit)="saveNewCard()">
