@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class CardService {
-  private url = 'http://localhost:8080/api/v1/card';
+  private url = 'https://verdant-bruin-370422.rj.r.appspot.com/api/v1/card';
 
   constructor(
     private http: HttpClient,
