@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run "npm install" |
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+teste aqui: https://business-partner-front.vercel.app/
+
 Back: https://github.com/luccasoliva/business-partner-back
 
 Aplicação Crud Angular. Onde é possível Ver, Criar, Atualizar ou Deletar Cartões com informações.
