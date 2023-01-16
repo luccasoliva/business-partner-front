@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs/internal/Observable';
-import { newCard } from 'src/app/interfaces/newCard';
-import { card } from '../../interfaces/card';
-import { CardService } from '../../services/card.service';
+import { newCard } from 'src/app/card-page/interfaces/newCard';
+import { card } from '../interfaces/card';
+import { CardService } from '../services/card.service';
 
 @Component({
   selector: 'app-card',

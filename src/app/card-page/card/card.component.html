@@ -1,3 +1,4 @@
+<app-tool-bar></app-tool-bar>
 <div class="content" *ngIf="allCards | async as cards; else loading">
   <button mat-raised-button class="button-add" (click)="OpenNewCardDialog()">
     Add Card
@@ -9,7 +10,7 @@
         <mat-card-header class="title_center">
           <mat-card-title>{{ card.CardName }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image class="rounded-circle" src="{{ card.avatar }}" />
+        <img mat-card-image class="rounded-circle" alt="Business card avatar" src="{{ card.avatar }}" />
         <mat-card-content>
           <p>
             <b>Code: </b>
@@ -39,7 +40,7 @@
 <!--new dialog --><ng-template #newCardDialog class="dialog-itens">
   <section mat-dialog-content>
     <form [formGroup]="newCardForm" (ngSubmit)="saveNewCard()">
-      <img [src]="avatarPreview || '/assets/no-profile.png'" id="image-preview" />
+      <img [src]="avatarPreview || '/assets/no-profile.png'" alt="Business card avatar" class="image-preview" />
       <mat-form-field appearance="fill">
         <mat-label>Card Name</mat-label>
         <input
@@ -92,7 +93,7 @@
         [disabled]="newCardForm.invalid"
         mat-raised-button
         color="accent"
-        id="salvar"
+        class="salvar"
       >
         Salvar
       </button>
@@ -125,7 +126,7 @@
     <section mat-dialog-content>
       <form [formGroup]="cardForm" (ngSubmit)="updateCard()">
         <img
-        [src]="avatarPreview || '/assets/no-profile.png'" id="image-preview"
+        [src]="avatarPreview || '/assets/no-profile.png'" alt="Business card avatar" class="image-preview"
         />
         <mat-form-field appearance="fill">
           <mat-label>Card Name</mat-label>
@@ -160,8 +161,9 @@
           [disabled]="cardForm.invalid"
           mat-raised-button
           color="accent"
-          id="salvar">
+          class="salvar">
           Salvar
         </button>
       </form>
     </section>
+  </ng-template>

@@ -3,23 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { MaterialModule } from './material/material.module';
-import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoaderComponent } from './components/loader/loader.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireModule } from '@angular/fire/compat/'
+import { AngularFireModule } from '@angular/fire/compat/';
+import {RouterOutlet} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
 @NgModule({
   declarations: [
-    AppComponent,
-    ToolBarComponent,
-    CardComponent,
-    LoaderComponent,
+    AppComponent
 
   ],
   imports: [
@@ -31,7 +27,9 @@ import { AngularFireModule } from '@angular/fire/compat/'
     ReactiveFormsModule,
     MatDialogModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterOutlet,
+    AppRoutingModule
 
 
   ],

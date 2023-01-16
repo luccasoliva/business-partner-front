@@ -1,0 +1,24 @@
+<app-nav></app-nav>
+<div class="container fw-light">
+  <div class="header ">
+    <h1 class="fw-light">Registro</h1>
+  </div>
+  <form action="#" method="post" autocomplete="off" class="">
+    <div class="form-group">
+      <input type="text" name="name" id="name" required class="inputField" autocomplete="off">
+      <label for="username">Nome</label>
+    </div>
+    <div class="form-group">
+      <input type="text" name="email" id="email" required class="inputField" autocomplete="off">
+      <label for="username">Email</label>
+    </div>
+    <div class="form-group">
+      <input type="password" name="password" id="password" required class="inputField" autocomplete="off">
+      <label for="password">Senha</label>
+    </div>
+    <button type="submit" class="submitButton fw-light">Registre-se!</button>
+  </form>
+  <div class="footer">
+    <span>Já tem uma conta? <a [routerLink]="['/auth/login']"><i> Entre aqui!</i></a></span>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<app-tool-bar></app-tool-bar>
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Business Partners</h1>
+        <p class="lead text-muted">Cadastre e visualize seus parceiros de negócios em um só lugar!<br>
+          Com o nosso site, você pode criar um Card com
+          todas as informações importantes sobre seus parceiros e ter acesso a eles facilmente quando precisar!</p>
+        <p>
+          <button type="button" [routerLink]="['/auth/login']" class="btn btn-outline-info mx-2 my-2">Crie Agora</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+
+    <div class="container">
+      <h1 class="fw-light">Cartões públicos recentemente adicionados...</h1>
+      <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mx-auto"  style="width: 18rem;">
+            <img [src]="'/assets/no-profile.png'" alt="Business card avatar" class=" card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">John Doe</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 ">
+          <div class="card mx-auto" style="width: 18rem;">
+            <img [src]="'/assets/no-profile.png'" alt="Business card avatar" class=" card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">John Doe</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card mx-auto" style="width: 18rem;">
+            <img [src]="'/assets/no-profile.png'" alt="Business card avatar" class=" card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">John Doe</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</main>
