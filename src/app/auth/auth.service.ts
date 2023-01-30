@@ -10,18 +10,18 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class AuthService {
   private helper = new JwtHelperService();
-  private baseUrl: string = 'http://localhost:8080/api/v1/owner';
+  private PATH_API: string = 'https://verdant-bruin-370422.rj.r.appspot.com/api/v1/owner';
 
   constructor(    private http: HttpClient,
                   private router: Router
   ) { }
 
   registerUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/register`, user);
+    return this.http.post<User>(`${this.PATH_API}/register`, user);
   }
 
   login(user: User): Observable<{accessToken: string}> {
-    return this.http.post<{accessToken: string}>(`${this.baseUrl}/login`, user)
+    return this.http.post<{accessToken: string}>(`${this.PATH_API}/login`, user)
       .pipe(
         tap((response) => {
           this.storageToken(response.accessToken)
