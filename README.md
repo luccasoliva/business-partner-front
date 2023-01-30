@@ -13,6 +13,8 @@ Back: https://github.com/luccasoliva/business-partner-back
 Aplicação Crud Angular. Onde é possível Ver, Criar, Atualizar ou Deletar Cartões com informações.
 Criação de cartões com Upload de fotos utilizando o Storage do Firebase.
 
+Tecnologias: Angular, Typescript, Firebase(para upload das fotos), Material e Bootstrap.
+
 Completamente responsivo.
 
 
