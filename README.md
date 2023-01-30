@@ -17,6 +17,8 @@ Tecnologias: Angular, Typescript, Firebase(para upload das fotos), Material e Bo
 
 Completamente responsivo.
 
-
-![normal](https://user-images.githubusercontent.com/58635996/205195166-a79c67f2-f8af-43a0-80a2-585893bd2171.PNG)
-![respons](https://user-images.githubusercontent.com/58635996/205195171-3baf747a-5994-494d-b69c-0f31df971c0a.PNG)
+![1Home-page](https://user-images.githubusercontent.com/58635996/215568832-79b79385-24d2-483d-aa7c-66ef1a1e539a.png)
+![2card-page](https://user-images.githubusercontent.com/58635996/215568838-2f1e96e1-2d49-4d39-96f9-2ea01024eb3a.png)
+![3login-page](https://user-images.githubusercontent.com/58635996/215568841-c8b4ee8a-1a12-4121-98e7-44987d3e47b2.png)
+![4register-page](https://user-images.githubusercontent.com/58635996/215568844-1e20a742-84cd-4663-b0dc-87269ecf276f.png)
+![5criar-card](https://user-images.githubusercontent.com/58635996/215568847-de6ae839-d9f7-40d0-ae7d-b8bd875fcce8.png)
