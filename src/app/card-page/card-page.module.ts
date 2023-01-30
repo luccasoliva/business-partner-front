@@ -6,6 +6,7 @@ import {CardComponent} from "./card/card.component";
 import {LoaderComponent} from "./components/loader/loader.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../material/material.module";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MaterialModule} from "../material/material.module";
     CardPageRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
 
   ]
 })
