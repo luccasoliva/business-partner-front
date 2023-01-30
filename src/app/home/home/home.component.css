@@ -1,16 +1,6 @@
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
+
+
 
 .b-example-divider {
   height: 3rem;
@@ -31,23 +21,9 @@
   fill: currentColor;
 }
 
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
 
-.nav-scroller .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
+
+
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
@@ -67,24 +43,17 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .card img {
-  width: 65%;
+  width: 12em;
+  height: 12em;
   border-radius: 50%;
+  object-fit: cover;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .card .card-title {
   font-weight: 700;
   font-size: 1.5em;
+
 }
-.card .btn {
-  border-radius: 2em;
-  background-color: teal;
-  color: #ffffff;
-  padding: 0.5em 1.5em;
-}
-.card .btn:hover {
-  background-color: rgba(0, 128, 128, 0.7);
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+
 

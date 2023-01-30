@@ -1,24 +1,54 @@
 <app-nav></app-nav>
 <div class="container fw-light">
-  <div class="header ">
+  <div class="header">
     <h1 class="fw-light">Registro</h1>
   </div>
-  <form action="#" method="post" autocomplete="off" class="">
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
     <div class="form-group">
-      <input type="text" name="name" id="name" required class="inputField" autocomplete="off">
-      <label for="username">Nome</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        required
+        class="inputField"
+      />
+      <label for="name">Nome</label>
     </div>
     <div class="form-group">
-      <input type="text" name="email" id="email" required class="inputField" autocomplete="off">
-      <label for="username">Email</label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        required
+        class="inputField"
+      />
+      <label for="email">Email</label>
     </div>
     <div class="form-group">
-      <input type="password" name="password" id="password" required class="inputField" autocomplete="off">
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        required
+        class="inputField"
+      />
       <label for="password">Senha</label>
     </div>
-    <button type="submit" class="submitButton fw-light">Registre-se!</button>
+    <button
+      type="submit"
+      (click)="submitted = true"
+      class="submitButton fw-light"
+    >
+      Registre-se!
+    </button>
+    <p *ngIf="submitted && registerForm.invalid" class="error-message">
+      Todos os campos devem ser preenchidos!
+    </p>
   </form>
   <div class="footer">
-    <span>Já tem uma conta? <a [routerLink]="['/auth/login']"><i> Entre aqui!</i></a></span>
+    <span
+      >Já tem uma conta?
+      <a [routerLink]="['/auth/login']"><i> Entre aqui!</i></a></span
+    >
   </div>
 </div>

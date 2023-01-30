@@ -1,8 +1,10 @@
   export interface card {
-      createdAt: Date;
-      CardName: string;
+      cardCode?: string;
+      createdAt?: Date;
       avatar: string;
-      Address: string;
-      ZipCode: string;
-      CardCode: string;
+      cardName: string;
+      address: string;
+      tel: string;
+      email: string;
+      description: string;
   }

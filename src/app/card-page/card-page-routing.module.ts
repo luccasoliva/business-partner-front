@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ToolBarComponent} from "./components/tool-bar/tool-bar.component";
+import { AuthorizedGuard } from '../_guard/authorized.guard';
+import {CardComponent} from "./card/card.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ToolBarComponent
+    component: CardComponent,
+    canActivate: [AuthorizedGuard],
+    title: 'Cards de parceiros',
   }
 ];
 

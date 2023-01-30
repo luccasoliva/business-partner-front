@@ -1,20 +1,37 @@
 <app-nav></app-nav>
 <div class="container fw-light">
-  <div class="header ">
+  <div class="header">
     <h1 class="fw-light">Login</h1>
   </div>
-  <form action="#" method="post" autocomplete="off" class="">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="on" class="">
     <div class="form-group">
-      <input type="text" name="username" id="username" required class="inputField" autocomplete="off">
-      <label for="username">Email</label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        required
+        autocomplete="on"
+        class="inputField"
+      />
+      <label for="email">Email</label>
     </div>
     <div class="form-group">
-      <input type="password" name="password" id="password" required class="inputField" autocomplete="off">
+      <input
+        type="password"
+        id="password"
+        required
+        formControlName="password"
+        class="inputField"
+      />
       <label for="password">Senha</label>
     </div>
     <button type="submit" class="submitButton fw-light">Login</button>
   </form>
   <div class="footer">
-    <span>Não tem conta? <a [routerLink]="['/auth/register']"><i> registre-se</i></a></span>
+    <span
+      >Não tem conta?
+      <a [routerLink]="['/auth/register']"><i> registre-se</i></a></span
+    >
   </div>
 </div>
+

@@ -1,74 +1,102 @@
-<app-tool-bar></app-tool-bar>
-<div class="content" *ngIf="allCards | async as cards; else loading">
-  <button mat-raised-button class="button-add" (click)="OpenNewCardDialog()">
-    Add Card
-  </button>
+<div class="container ">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="col-md-1 order-md-first mb-2 mb-md-0">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none me-2">
+        <span class="fs-4 fw-light">Business Partners</span>
+      </a>
+    </div>
 
+    <div class="col-md-3 text-end">
+      <button (click)="OpenNewCardDialog()" class="btn btn-outline-primary me-2">Criar Cartão</button>
+      <button  (click)="logout()" class="btn btn-outline-danger">Sair</button>
+    </div>
+  </header>
+</div>
+
+
+<div class="content" *ngIf="allCards | async as cards; else loading">
     <div  class="l-card">
       <div *ngFor="let card of cards" >
-      <mat-card class="mat-elevation-z4 rounded c-card">
-        <mat-card-header class="title_center">
-          <mat-card-title>{{ card.CardName }}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image class="rounded-circle" alt="Business card avatar" src="{{ card.avatar }}" />
-        <mat-card-content>
-          <p>
-            <b>Code: </b>
-            {{ card.CardCode }}
-          </p>
-          <p>
-            <b>Zip Code: </b>
-            <span>{{ card.ZipCode }}</span>
-          </p>
-          <p>
-            <b>Address: </b>
-            <span>{{ card.Address }}</span>
-          </p>
-          <p>
-            <b>Created At: </b>
-            <span>{{ card.createdAt | date }}</span>
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button (click)="openEditCargoDialog(card)">Edit</button>
-          <button mat-button (click)="openDeleteCargoDialog(card)">Delete</button>
-        </mat-card-actions>
-      </mat-card>
+        <div class="container marketing">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mx-auto"  style="width: 18rem;">
+                <div class="action-btn">
+                  <button mat-icon-button color="primary" (click)="openEditCargoDialog(card)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="openDeleteCargoDialog(card)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                <img [src]="card.avatar" alt="Business card avatar" class=" card-img-top" />
+                <div class="card-body ">
+                  <h5 class="card-title">{{card.cardName}}</h5>
+                  <p class="card-text">{{card.address}}</p>
+                  <p class="card-text">{{card.tel}}</p>
+                  <p class="card-text">{{card.email}}</p>
+                  <p class="card-text">{{card.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>
-<!--new dialog --><ng-template #newCardDialog class="dialog-itens">
+
+<ng-template #newCardDialog class="dialog-itens">
   <section mat-dialog-content>
     <form [formGroup]="newCardForm" (ngSubmit)="saveNewCard()">
       <img [src]="avatarPreview || '/assets/no-profile.png'" alt="Business card avatar" class="image-preview" />
       <mat-form-field appearance="fill">
-        <mat-label>Card Name</mat-label>
+        <mat-label>Nome</mat-label>
         <input
           type="text"
           placeholder="Ex: Johan"
           matInput
-          formControlName="CardName"
-          maxlength="30"
+          formControlName="cardName"
+          maxlength="26"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Zip Code</mat-label>
+        <mat-label>Endereço</mat-label>
         <input
           type="text"
-          placeholder="Ex: 12314"
+          placeholder="Ex: Rua um, 123. São Paulo - SP"
           matInput
-          maxlength="30"
-          formControlName="ZipCode"
+          maxlength="26"
+          formControlName="address"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
+        <mat-label>Telefone</mat-label>
         <input
           type="text"
-          placeholder="Ex: 123 Ainz Street"
+          placeholder="Ex: 19987654321"
           matInput
-          maxlength="30"
-          formControlName="Address"
+          maxlength="26"
+          formControlName="tel"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="text"
+          placeholder="Ex: exempo@exemplo.com"
+          matInput
+          maxlength="26"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descrição</mat-label>
+        <input
+          type="text"
+          placeholder="Ex: Cliente"
+          matInput
+          maxlength="26"
+          formControlName="description"
         />
       </mat-form-field>
       <input
@@ -82,17 +110,16 @@
       <button
         type="button"
         mat-stroked-button
-        color="accent"
+        color="primary"
         (click)="fileInput.click()"
       >
         Upload Image
       </button>
-
       <button
         type="submit"
         [disabled]="newCardForm.invalid"
         mat-raised-button
-        color="accent"
+        color="primary"
         class="salvar"
       >
         Salvar
@@ -129,41 +156,70 @@
         [src]="avatarPreview || '/assets/no-profile.png'" alt="Business card avatar" class="image-preview"
         />
         <mat-form-field appearance="fill">
-          <mat-label>Card Name</mat-label>
+          <mat-label>Nome</mat-label>
           <input
             type="text"
             placeholder="Ex: Johan"
             matInput
             maxlength="30"
-            formControlName="CardName"
+            formControlName="cardName"
           />
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Zip Code</mat-label>
+          <mat-label>Endereço</mat-label>
           <input
             type="text"
-            placeholder="Ex: 12314"
+            placeholder="Ex: rua um, 123. São Paulo - SP"
             matInput
-            formControlName="ZipCode"
+            formControlName="address"
           />
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
+          <mat-label>Tel</mat-label>
+          <input
+            type="text"
+            placeholder="Ex: 19987654321"
+            matInput
+            formControlName="tel"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Emal</mat-label>
           <input
             type="text"
             placeholder="Ex: 123 Ainz Street"
             matInput
-            formControlName="Address"
+            formControlName="email"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Descrição</mat-label>
+          <input
+            type="text"
+            placeholder="Ex: Cliente"
+            matInput
+            formControlName="description"
           />
         </mat-form-field>
         <button
           type="submit"
           [disabled]="cardForm.invalid"
           mat-raised-button
-          color="accent"
+          color="primary"
           class="salvar">
           Salvar
         </button>
       </form>
     </section>
   </ng-template>
+
+<div *ngIf="(allCards | async)?.length === 0"  class="px-4 py-5 my-5 text-center">
+  <h2>\(o_o)/</h2>
+  <h1 class="display-5 fw-bold">Bem-vindx</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Aqui você pode cadastrar seus cartões de parceiros e ter acesso fácil aos seus contatos e informações. No momento, sua página está vazia, mas assim que você cadastrar seus cartões, eles estarão disponíveis aqui para você. Não perca mais tempo procurando por informações de contato, cadastre seus cartões agora e tenha tudo acessível em um só lugar!</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button type="button" (click)="OpenNewCardDialog()" class="btn btn-outline-primary btn-lg px-4 gap-3">Criar Agora</button>
+    </div>
+  </div>
+</div>

@@ -84,3 +84,9 @@ button.submitButton:hover {
 .footer span {
   padding: 10px;
 }
+.error-message{
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

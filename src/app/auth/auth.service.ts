@@ -16,40 +16,48 @@ export class AuthService {
                   private router: Router
   ) { }
 
-  public registerUser(user: User): Observable<User> {
+  registerUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/register`, user);
   }
+
   login(user: User): Observable<{accessToken: string}> {
     return this.http.post<{accessToken: string}>(`${this.baseUrl}/login`, user)
       .pipe(
         tap((response) => {
-          this.armazenarToken(response.accessToken)
+          this.storageToken(response.accessToken)
         })
       )
   }
 
   logout(): void {
-    this.removerToken()
+    this.removeToken()
     this.router.navigateByUrl('/login')
   }
 
-  armazenarToken(token: string): void {
+  storageToken(token: string): void {
     localStorage.setItem('accessToken', token)
   }
 
-  removerToken(): void {
+  removeToken(): void {
     localStorage.removeItem('accessToken')
   }
 
-  recuperarToken(): string | null {
+  recoverToken(): string | null {
     return localStorage.getItem('accessToken')
   }
 
-  logado(): boolean {
-    const token = this.recuperarToken()
+  logged(): boolean {
+    const token = this.recoverToken()
     if (token == null) {
       return false
     }
     return !this.helper.isTokenExpired(token)
+  }
+
+  checkTokenExpiration(): void {
+    const token = this.recoverToken();
+    if (token && this.helper.isTokenExpired(token)) {
+      this.logout();
+    }
   }
 }

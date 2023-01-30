@@ -68,3 +68,42 @@ form {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 10px;
 }
+
+
+
+/* Path: src\app\card-page\card\card.component.css */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+/* rtl:end:ignore */
+.card {
+  margin-top: 2em;
+  padding: 1.5em 0.5em 0.5em;
+  border-radius: 2em;
+  text-align: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.card img {
+  width: 12em;
+  height: 12em;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.card .card-title {
+  font-weight: 700;
+  font-size: 1.5em;
+
+}
+.action-btn{
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 10px;
+}

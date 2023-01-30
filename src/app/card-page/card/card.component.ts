@@ -1,11 +1,11 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs/internal/Observable';
-import { newCard } from 'src/app/card-page/interfaces/newCard';
 import { card } from '../interfaces/card';
 import { CardService } from '../services/card.service';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-card',
@@ -15,22 +15,25 @@ import { CardService } from '../services/card.service';
 export class CardComponent implements OnInit {
   allCards?: Observable<card[]>;
   selectedTrace!: card;
-  gridColumns = 3;
   avatarPreview: string = '';
   foto!: File;
 
   newCardForm: FormGroup = this.fb.group({
-    CardName: ['', Validators.required],
     avatar: ['', Validators.required],
-    Address: ['', Validators.required],
-    ZipCode: ['', Validators.required],
+    cardName: ['', Validators.required],
+    address: ['', Validators.required],
+    tel: ['', Validators.required],
+    email: ['', Validators.required],
+    description: ['', Validators.required],
   });
 
   cardForm: FormGroup = this.fb.group({
-    CardName: ['', Validators.required],
     avatar: ['', Validators.required],
-    Address: [{value: '', disabled: true }],
-    ZipCode: [{value: '', disabled: true }],
+    cardName: ['', Validators.required],
+    address: ['', Validators.required],
+    tel: ['', Validators.required],
+    email: ['', Validators.required],
+    description: ['', Validators.required],
   });
 
   @ViewChild('newCardDialog')
@@ -41,12 +44,12 @@ export class CardComponent implements OnInit {
 
   @ViewChild('deleteCardDialog')
   deleteCardDialog!: TemplateRef<any>;
-
   constructor(
     private cardService: CardService,
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -56,63 +59,54 @@ export class CardComponent implements OnInit {
 
   public saveNewCard(): void {
     this.dialog.closeAll();
-    const newCard: newCard = {
-
-      CardName: this.newCardForm.value.CardName,
-      avatar: this.newCardForm.value.avatar,
-      Address: this.newCardForm.value.Address,
-      ZipCode: this.newCardForm.value.ZipCode,
-    };
-      this.cardService.createCard(newCard, this.foto);
-
+    const newCard: card = this.newCardForm.value;
+    this.cardService.createCard(newCard, this.foto);
+    console.log(this.newCardForm.value);
+    this.ngOnInit();
   }
 
 
-  public deleteCard(selectedTrace: card): void {
-
+  async deleteCard(selectedTrace: card): Promise<void> {
     this.dialog.closeAll();
-    this.cardService.deleteCard(selectedTrace).subscribe(
-      (data) => {
-        this.closeDialog();
-        this.allCards = this.cardService.getAllCards();
-        this.snackBar.open('The Card was successfully deleted', 'OK', {
+    this.cardService.deleteCard(selectedTrace).subscribe({
+      next: () => {
+        this.ngOnInit();
+        this.snackBar.open('Card deletado com Sucesso!!', 'OK', {
           duration: 3000,
           verticalPosition: 'top',
           panelClass: ['success-snackbar'],
         });
       },
-      (err) => {
-        this.closeDialog();
-        this.allCards = this.cardService.getAllCards();
-        this.snackBar.open('An error occurred. Please try again later.', 'OK', {
-          duration: 4000,
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar'],
-        });
-
-      }
-    );
+      error: () => this.snackBar.open('Um erro ocorreu. Por favor, tente novamente mais tarde.', 'OK', {
+        duration: 4000,
+        verticalPosition: 'top',
+        panelClass: ['error-snackbar'],
+      })
+    });
   }
+
+
   public updateCard(): void {
     this.dialog.closeAll();
-    this.selectedTrace.CardName = this.cardForm.value.CardName;
-    this.cardService.updateCard(this.selectedTrace).subscribe(
-      (data) => {
+    this.selectedTrace.cardName = this.cardForm.value.cardName;
+    this.cardService.updateCard(this.selectedTrace).subscribe({
+      next: () => {
         this.allCards = this.cardService.getAllCards();
-        this.snackBar.open('The Card was successfully updated', 'OK', {
+        this.snackBar.open('O Card foi atualizado com Sucesso!!', 'OK', {
           duration: 3000,
           verticalPosition: 'top',
           panelClass: ['success-snackbar'],
         });
-      }, (err) => {
+      },
+      error: () => {
         this.allCards = this.cardService.getAllCards();
-        this.snackBar.open('An error occurred. Please try again later.', 'OK', {
+        this.snackBar.open('Um erro ocorreu. Por favor, tente novamente mais tarde.', 'OK', {
           duration: 4000,
           verticalPosition: 'top',
           panelClass: ['error-snackbar'],
         });
       }
-    );
+    });
   }
 
   public getAvatar(event: any): void {
@@ -134,20 +128,23 @@ export class CardComponent implements OnInit {
     this.selectedTrace = card;
   }
 
-  public OpenNewCardDialog(): void {
+  OpenNewCardDialog(): void {
     this.avatarPreview = '';
     this.dialog.open(this.newCardDialog);
-  }
+   }
   public openDeleteCargoDialog(card: card): void {
     this.selectCard(card);
     this.dialog.open(this.deleteCardDialog);
   }
+
   public openEditCargoDialog(card: card): void {
     this.cardForm.setValue({
-      CardName: card.CardName,
+      cardName: card.cardName,
       avatar: card.avatar,
-      Address: card.Address,
-      ZipCode: card.ZipCode,
+      address: card.address,
+      tel: card.tel,
+      email: card.email,
+      description: card.description
     });
 
     this.selectCard(card);
@@ -157,5 +154,9 @@ export class CardComponent implements OnInit {
 
   public closeDialog(){
     this.dialog.closeAll();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

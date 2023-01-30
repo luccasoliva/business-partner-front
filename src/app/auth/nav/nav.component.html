@@ -7,8 +7,9 @@
     </div>
 
     <div class="col-md-3 text-end">
-      <button  [routerLink]="['/auth/login']" *ngIf="currentRoute == 'register'" type="button" class="btn btn-outline-info me-2">Login</button>
-      <button  [routerLink]="['/auth/register']" *ngIf="currentRoute == 'login'" type="button" class="btn btn-outline-info">Cadastre-se</button>
+      <button  [routerLink]="['/auth/login']" *ngIf="currentRoute != 'login' && !isLoggedIn" type="button" class="btn btn-outline-info me-2">Login</button>
+      <button  [routerLink]="['/auth/register']" *ngIf="currentRoute != 'register' && !isLoggedIn" type="button" class="btn btn-outline-info">Cadastre-se</button>
+      <button  (click)="logout()" *ngIf="isLoggedIn" class="btn btn-outline-danger">Sair</button>
     </div>
   </header>
 </div>
