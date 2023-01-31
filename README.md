@@ -4,8 +4,8 @@ Run "npm install" |
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 Teste aqui: https://business-partner-front.vercel.app/ (A primeira requisição ao back leva algum tempo!)
+<h2>Back: https://github.com/luccasoliva/business-partner-back</h2>
 
-Back: https://github.com/luccasoliva/business-partner-back
 
 Aplicação Crud Angular. Onde é possível Ver, Criar, Atualizar ou Deletar Cartões com informações.
 Criação de cartões com Upload de fotos utilizando o Storage do Firebase.
